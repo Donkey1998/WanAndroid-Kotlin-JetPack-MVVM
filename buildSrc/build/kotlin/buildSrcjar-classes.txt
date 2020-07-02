@@ -1,0 +1,1 @@
+/Users/tonyli/Documents/WanAndroid-Kotlin-JetPack-MVVM/buildSrc/build/classes/kotlin/main/donkey/dependencies/Deps.class:/Users/tonyli/Documents/WanAndroid-Kotlin-JetPack-MVVM/buildSrc/build/classes/kotlin/main/donkey/dependencies/Versions.class
