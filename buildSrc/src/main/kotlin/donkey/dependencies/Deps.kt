@@ -18,6 +18,8 @@ object Versions {
     const val junit = "4.12"
     const val test_junit = "1.1.1"
     const val test_espresso = "3.2.0"
+    const val  navigation = "2.0.0"
+    const val  navigation_ui = "2.1.0"
 }
 
 object Deps {
@@ -28,6 +30,7 @@ object Deps {
     const val junit = "junit:junit:${Versions.junit}"
     const val test_junit = "androidx.test.ext:junit:${Versions.test_junit}"
     const val test_espresso ="androidx.test.espresso:espresso-core:${Versions.test_espresso}"
-
+    const val navigation_fragment ="androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.navigation_ui}"
 
 }

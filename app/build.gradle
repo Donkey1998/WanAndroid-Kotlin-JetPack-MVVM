@@ -35,5 +35,7 @@ dependencies {
     testImplementation Deps.junit
     androidTestImplementation Deps.test_junit
     androidTestImplementation Deps.test_espresso
+    implementation Deps.navigation_fragment
+    implementation Deps.navigation_ui
 
 }
