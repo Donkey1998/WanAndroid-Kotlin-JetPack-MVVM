@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--各个item绑定的android:id 需要个navigation 中fragment android:id 相对应-->
+	<item
+		android:id="@+id/homeFragment"
+		android:icon="@drawable/ic_home_black_24dp"
+		android:title="@string/home" />
+
+	<item
+		android:id="@+id/blogFragment"
+		android:icon="@drawable/ic_blog"
+		android:title="@string/blog" />
+
+	<item
+		android:id="@+id/searchFragment"
+		android:icon="@drawable/search"
+		android:title="@string/search" />
+
+	<item
+		android:id="@+id/projectFragment"
+		android:icon="@drawable/ic_dashboard_black_24dp"
+		android:title="@string/project_type" />
+	<item
+		android:id="@+id/profileFragment"
+		android:icon="@drawable/ic_profile"
+		android:title="@string/me" />
+
+</menu>
