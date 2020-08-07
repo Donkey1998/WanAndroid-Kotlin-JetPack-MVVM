@@ -20,6 +20,11 @@ object Versions {
     const val test_espresso = "3.2.0"
     const val  navigation = "2.0.0"
     const val  navigation_ui = "2.1.0"
+    const val coroutines_android = "1.3.5"
+    const val retrofit = "2.7.1"
+    const val retrofit_converter_gson = "2.6.2"
+    const val okhttp_logging_interceptor = "4.0.0"
+
 }
 
 object Deps {
@@ -32,5 +37,12 @@ object Deps {
     const val test_espresso ="androidx.test.espresso:espresso-core:${Versions.test_espresso}"
     const val navigation_fragment ="androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.navigation_ui}"
+    const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_android}"
+
+    // network
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_converter_gson}"
+    const val okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor}"
+
 
 }
