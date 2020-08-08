@@ -51,6 +51,9 @@ dependencies {
     implementation Deps.retrofit
     implementation Deps.retrofit_converter_gson
     implementation Deps.okhttp_logging_interceptor
+    // viewpager
+    implementation Deps.material
+    implementation Deps.viewpager
 
 
 }

@@ -25,6 +25,8 @@ object Versions {
     const val retrofit_converter_gson = "2.6.2"
     const val okhttp_logging_interceptor = "4.0.0"
 
+    const val viewpager = "1.0.0"
+    const val material = "1.2.0-alpha03"
 }
 
 object Deps {
@@ -44,5 +46,8 @@ object Deps {
     const val retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_converter_gson}"
     const val okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor}"
 
+    // viewpager
+    const val viewpager = "androidx.viewpager2:viewpager2:${Versions.viewpager}"
+    const val material = "com.google.android.material:material:${Versions.material}"
 
 }
