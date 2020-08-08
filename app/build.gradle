@@ -16,6 +16,15 @@ android {
         versionName Versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8
+        }
+
     }
 
     buildTypes {
@@ -37,5 +46,11 @@ dependencies {
     androidTestImplementation Deps.test_espresso
     implementation Deps.navigation_fragment
     implementation Deps.navigation_ui
+    implementation Deps.coroutines_android
+    // network
+    implementation Deps.retrofit
+    implementation Deps.retrofit_converter_gson
+    implementation Deps.okhttp_logging_interceptor
+
 
 }
