@@ -2,6 +2,7 @@ package com.wanandroid
 
 import android.app.Application
 import android.content.Context
+import org.koin.core.context.startKoin
 
 /**
  * Created by Donkey
@@ -18,5 +19,8 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
         _context = this
+        startKoin {
+            modules(appModule)
+        }
     }
 }
