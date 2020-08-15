@@ -15,8 +15,10 @@
         android:id="@+id/homeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        binding:isRefresh="@{viewModel.uiState.isRefresh}"
+        binding:isRefresh="@{viewModel.uiState.showLoading}"
         binding:onRefresh="@{viewModel.refreshHome}">
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecycleView"
@@ -31,6 +33,4 @@
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
 </layout>

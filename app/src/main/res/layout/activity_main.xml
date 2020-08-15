@@ -7,15 +7,16 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navigation_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/tab_navigation"
-        app:defaultNavHost="true"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        />
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/tab_navigation"
+         />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_view"
         android:layout_width="match_parent"
