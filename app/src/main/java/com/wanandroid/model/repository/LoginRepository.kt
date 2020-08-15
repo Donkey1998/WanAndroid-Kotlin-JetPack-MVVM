@@ -2,7 +2,7 @@ package com.wanandroid.model.repository
 
 import android.util.Log
 import com.wanandroid.model.http.BaseRepository
-import com.wanandroid.model.ResultBean.User
+import com.wanandroid.model.resultbean.User
 import com.wanandroid.model.http.WanRetrofitClient
 import com.wanandroid.model.http.ResponseResult
 

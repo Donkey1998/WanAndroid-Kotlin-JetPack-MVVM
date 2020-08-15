@@ -1,6 +1,6 @@
 package com.wanandroid.model.http
 
-import com.wanandroid.model.ResultBean.User
+import com.wanandroid.model.resultbean.User
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

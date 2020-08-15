@@ -1,4 +1,4 @@
-package com.wanandroid.model.ResultBean
+package com.wanandroid.model.resultbean
 
 /**
  * Created by Donkey
