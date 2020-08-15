@@ -24,9 +24,18 @@ object Versions {
     const val retrofit = "2.7.1"
     const val retrofit_converter_gson = "2.6.2"
     const val okhttp_logging_interceptor = "4.0.0"
+    const val swipeRefreshLayout = "1.1.0-rc01"
+    const val baseRecyclerViewAdapterHelper = "2.9.50"
+    const val recyclerView = "1.1.0"
+
 
     const val viewpager = "1.0.0"
     const val material = "1.2.0-alpha03"
+
+    const val livedata_ktx = "2.2.0"
+    const val viewmodel_ktx = "2.2.0"
+    const val lifecycle_extension = "2.2.0"
+    const val koin = "2.0.1"
 }
 
 object Deps {
@@ -40,6 +49,10 @@ object Deps {
     const val navigation_fragment ="androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.navigation_ui}"
     const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_android}"
+    const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+    //recyclerView
+    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val baseRecyclerViewAdapterHelper = "com.github.CymChad:BaseRecyclerViewAdapterHelper:${Versions.baseRecyclerViewAdapterHelper}"
 
     // network
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
@@ -50,4 +63,14 @@ object Deps {
     const val viewpager = "androidx.viewpager2:viewpager2:${Versions.viewpager}"
     const val material = "com.google.android.material:material:${Versions.material}"
 
+    // liveData
+    const val livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.livedata_ktx}"
+    // viewModel
+    const val viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodel_ktx}"
+    const val lifecycle_extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_extension}"
+
+    // koin
+    const val koin_android = "org.koin:koin-android:${Versions.koin}"
+    const val koin_androidx_scope = "org.koin:koin-androidx-scope:${Versions.koin}"
+    const val koin_androidx_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 }

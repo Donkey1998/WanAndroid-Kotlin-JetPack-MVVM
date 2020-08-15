@@ -3,6 +3,7 @@ import donkey.dependencies.Deps
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -24,6 +25,7 @@ android {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_1_8
         }
+        vectorDrawables.useSupportLibrary = true
 
     }
 
@@ -32,6 +34,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 }
 
@@ -47,6 +53,9 @@ dependencies {
     implementation Deps.navigation_fragment
     implementation Deps.navigation_ui
     implementation Deps.coroutines_android
+    implementation Deps.swiperefreshlayout
+    implementation Deps.recyclerView
+    implementation Deps.baseRecyclerViewAdapterHelper
     // network
     implementation Deps.retrofit
     implementation Deps.retrofit_converter_gson
@@ -54,6 +63,15 @@ dependencies {
     // viewpager
     implementation Deps.material
     implementation Deps.viewpager
+    // liveData
+    implementation Deps.livedata_ktx
+    // viewModel
+    implementation Deps.viewmodel_ktx
+    implementation Deps.lifecycle_extension
+    // koin
+    implementation Deps.koin_android
+    implementation Deps.koin_androidx_scope
+    implementation Deps.koin_androidx_viewmodel
 
 
 }
