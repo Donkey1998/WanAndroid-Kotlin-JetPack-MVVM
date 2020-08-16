@@ -1,7 +1,8 @@
 package com.wanandroid.ui.first
 
-import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.wanandroid.App
 import com.wanandroid.R
 import com.wanandroid.adapter.FirstArticleAdapter
 import com.wanandroid.base.BaseVMFragment
@@ -31,25 +32,39 @@ class FirstFragment : BaseVMFragment<FragmentFirstBinding>(R.layout.fragment_fir
 
     }
     private fun loadMore() {
-        articleViewModel.setArticleList()
+        articleViewModel.getFirstArticleList(false)
     }
+
+    private fun refresh() {
+        articleViewModel.getFirstArticleList(true)
+    }
+
+
     override fun initData() {
-        articleViewModel.setArticleList()
+        refresh()
     }
 
     override fun startObserve() {
 
         articleViewModel.uiState.observe(viewLifecycleOwner, Observer {
-                    Log.d("uiState", it.toString())
-            firstArticleAdapter.run {
-                firstArticleAdapter.setEnableLoadMore(false)
-                addData(it.listData)
-                setEnableLoadMore(true)
-                loadMoreComplete()
+            it.successData?.let { list ->
+                firstArticleAdapter.run {
+                    firstArticleAdapter.setEnableLoadMore(false)
+                    if (it.isRefresh){
+                        replaceData(list.datas)
+                    }else{
+                        addData(list.datas)
+                    }
+                    setEnableLoadMore(true)
+                    loadMoreComplete()
+                }
+            }
 
+            if (it.showEnd) firstArticleAdapter.loadMoreEnd()
+
+            it.showError?.let { message ->
+                Toast.makeText(App.getContext(),if (message.isBlank()) "网络异常" else message,Toast.LENGTH_SHORT).show()
             }
         })
-
-
     }
 }

@@ -1,9 +1,8 @@
 package com.wanandroid.model.http
 
+import com.wanandroid.model.resultbean.ArticleList
 import com.wanandroid.model.resultbean.User
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created by Donkey
@@ -17,4 +16,7 @@ interface WanService {
     @FormUrlEncoded
     @POST("/user/login")
     suspend fun login(@Field("username") userName: String, @Field("password") passWord: String): WanResponse<User>
+
+    @GET("/article/list/{page}/json")
+    suspend fun getHomeArticles(@Path("page") page: Int): WanResponse<ArticleList>
 }
