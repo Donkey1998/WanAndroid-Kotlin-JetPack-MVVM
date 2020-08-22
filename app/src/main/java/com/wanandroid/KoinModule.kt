@@ -1,5 +1,6 @@
 package com.wanandroid
 import com.wanandroid.ui.first.ArticleViewModel
+import com.wanandroid.ui.guide.GuideViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 /**
@@ -8,6 +9,7 @@ import org.koin.dsl.module
  */
 val viewModelModule = module {
     viewModel { ArticleViewModel() }
+    viewModel { GuideViewModel() }
 }
 
 val repositoryModule = module {

@@ -36,6 +36,9 @@ object Versions {
     const val viewmodel_ktx = "2.2.0"
     const val lifecycle_extension = "2.2.0"
     const val koin = "2.0.1"
+
+    const val verticalTabLayout = "1.2.5"
+    const val flowLayout = "1.1.2"
 }
 
 object Deps {
@@ -73,4 +76,7 @@ object Deps {
     const val koin_android = "org.koin:koin-android:${Versions.koin}"
     const val koin_androidx_scope = "org.koin:koin-androidx-scope:${Versions.koin}"
     const val koin_androidx_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+
+    const val verticalTabLayout = "q.rorbin:VerticalTabLayout:${Versions.verticalTabLayout}"
+    const val flowLayout = "com.hyman:flowlayout-lib:${Versions.flowLayout}"
 }
