@@ -5,6 +5,7 @@ import android.text.Html
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 /**
@@ -31,4 +32,9 @@ fun Toolbar.init(titleResId: Int, iconResId: Int, action: () -> Unit) {
     setTitle(titleResId)
     setNavigationIcon(iconResId)
     setNavigationOnClickListener { action() }
+}
+
+@BindingAdapter("adapter")
+fun RecyclerView.adapter(adapter: RecyclerView.Adapter<*>) {
+    setAdapter(adapter)
 }
