@@ -74,5 +74,8 @@ dependencies {
     implementation Deps.koin_androidx_viewmodel
 
     api 'com.tencent.tbs.tbssdk:sdk:43903'
+    implementation Deps.verticalTabLayout
+    implementation Deps.flowLayout
+
 
 }
