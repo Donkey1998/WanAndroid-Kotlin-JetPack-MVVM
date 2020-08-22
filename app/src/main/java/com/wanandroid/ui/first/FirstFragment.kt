@@ -1,8 +1,11 @@
 package com.wanandroid.ui.first
 
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
 import com.wanandroid.App
+import com.wanandroid.BrowserActivity
 import com.wanandroid.R
 import com.wanandroid.adapter.FirstArticleAdapter
 import com.wanandroid.base.BaseVMFragment
@@ -26,6 +29,12 @@ class FirstFragment : BaseVMFragment<FragmentFirstBinding>(R.layout.fragment_fir
         }
 
         firstArticleAdapter.run {
+            setOnItemClickListener { _, _, position ->
+                    val bundle =
+                        bundleOf(BrowserActivity.URL to firstArticleAdapter.data[position].link)
+                    NavHostFragment.findNavController(this@FirstFragment)
+                        .navigate(R.id.browserActivity, bundle)
+                }
             setLoadMoreView(CustomLoadMoreView())//添加上拉加载更多布局
             setOnLoadMoreListener({ loadMore() }, homeRecycleView) //上拉加载更多
         }

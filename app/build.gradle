@@ -73,5 +73,6 @@ dependencies {
     implementation Deps.koin_androidx_scope
     implementation Deps.koin_androidx_viewmodel
 
+    api 'com.tencent.tbs.tbssdk:sdk:43903'
 
 }
