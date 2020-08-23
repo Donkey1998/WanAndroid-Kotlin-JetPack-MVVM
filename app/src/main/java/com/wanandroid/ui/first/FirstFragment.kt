@@ -1,5 +1,6 @@
 package com.wanandroid.ui.first
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -30,8 +31,13 @@ class FirstFragment : BaseVMFragment<FragmentFirstBinding>(R.layout.fragment_fir
 
         firstArticleAdapter.run {
             setOnItemClickListener { _, _, position ->
-                    val bundle =
-                        bundleOf(BrowserActivity.URL to firstArticleAdapter.data[position].link)
+                val bundle = Bundle()
+                bundle.putString(BrowserActivity.URL,firstArticleAdapter.data[position].link)
+                bundle.putString(BrowserActivity.TITLE,firstArticleAdapter.data[position].title)
+//                    val bundle =
+//                        bundleOf(BrowserActivity.URL to firstArticleAdapter.data[position].link,
+//                                BrowserActivity.TITLE to firstArticleAdapter.data[position].title
+//                                )
                     NavHostFragment.findNavController(this@FirstFragment)
                         .navigate(R.id.browserActivity, bundle)
                 }
