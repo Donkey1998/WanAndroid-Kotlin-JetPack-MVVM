@@ -2,6 +2,7 @@ package com.wanandroid.model.http
 
 import com.wanandroid.model.resultbean.ArticleList
 import com.wanandroid.model.resultbean.Guide
+import com.wanandroid.model.resultbean.Project
 import com.wanandroid.model.resultbean.User
 import retrofit2.http.*
 
@@ -23,4 +24,10 @@ interface WanService {
 
     @GET("/navi/json")
     suspend fun getGuide():WanResponse<List<Guide>>
+
+    @GET("/project/tree/json")
+    suspend fun getProject():WanResponse<List<Project>>
+
+    @GET("/article/listproject/{page}/json")
+    suspend fun getLastedProject(@Path("page") page: Int): WanResponse<ArticleList>
 }
