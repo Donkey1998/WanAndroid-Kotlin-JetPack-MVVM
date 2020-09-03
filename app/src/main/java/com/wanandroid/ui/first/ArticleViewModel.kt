@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.wanandroid.base.BaseViewModel
 import com.wanandroid.model.http.ResponseResult
 import com.wanandroid.model.repository.FirstRepository
+import com.wanandroid.model.repository.LastedProjectRepository
+import com.wanandroid.model.resultbean.Article
 import com.wanandroid.model.resultbean.ArticleList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +18,13 @@ import kotlinx.coroutines.withContext
  * on 2020/8/8
  */
 class ArticleViewModel: BaseViewModel() {
+    sealed class ArticleType {
+        object First : ArticleType()                 // 首页
+        object LatestProject : ArticleType()        // 最新项目
+    }
+
     private val firstRepository = FirstRepository()
+    private val lastedProjectRepository = LastedProjectRepository();
     private var _uiState = MutableLiveData<ArticleUiModel>()
     private var currentPage = 0
 
@@ -27,28 +35,39 @@ class ArticleViewModel: BaseViewModel() {
         getFirstArticleList(true)
     }
 
-     fun getFirstArticleList(isRefresh: Boolean = false){
-         emitArticleUiState(currentPage==0)
-         if(isRefresh) currentPage = 0 //下拉刷新时将currentPage置0
-         viewModelScope.launch (Dispatchers.Main){
-              val result = withContext(Dispatchers.IO){
-                   firstRepository.getArticleList(currentPage) }
-              if (result is ResponseResult.Success) {
-                  currentPage++
-                  val articleList = result.data
-
-                  if (articleList.offset >= articleList.total) { //已经是最后一页了
-                      emitArticleUiState(showLoading = false, showEnd = true)
-                      return@launch
-                  }
-                  emitArticleUiState(showLoading = false, successData = articleList, isRefresh=isRefresh)
-
-              } else if (result is ResponseResult.Error) {
-                  emitArticleUiState(showLoading = false, showError = "")
-              }
-         }
-
+    val refreshLastedProject: ()-> Unit = {  //下拉刷新
+        getLastedProjectList(true)
     }
+
+    fun getFirstArticleList(isRefresh: Boolean = false) = getArticleList(ArticleType.First,isRefresh);
+    fun getLastedProjectList(isRefresh: Boolean = false) = getArticleList(ArticleType.LatestProject,isRefresh);
+
+    private fun getArticleList(articleType: ArticleType, isRefresh: Boolean = false) {
+        emitArticleUiState(currentPage==0)
+        if(isRefresh) currentPage = 0 //下拉刷新时将currentPage置0
+        viewModelScope.launch (Dispatchers.Main){
+            val result = withContext(Dispatchers.IO){
+                when (articleType) {
+                    ArticleType.First ->  firstRepository.getArticleList(currentPage)
+                    ArticleType.LatestProject ->  lastedProjectRepository.getLastedProject(currentPage)
+                }
+                }
+            if (result is ResponseResult.Success) {
+                currentPage++
+                val articleList = result.data
+
+                if (articleList.offset >= articleList.total) { //已经是最后一页了
+                    emitArticleUiState(showLoading = false, showEnd = true)
+                    return@launch
+                }
+                emitArticleUiState(showLoading = false, successData = articleList, isRefresh=isRefresh)
+
+            } else if (result is ResponseResult.Error) {
+                emitArticleUiState(showLoading = false, showError = "")
+            }
+        }
+    }
+
 
     private fun emitArticleUiState(
         showLoading: Boolean = false,

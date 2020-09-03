@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.wanandroid.R" alias="R" />
+        <variable
+            name="article"
+            type="com.wanandroid.model.resultbean.Article" />
+    </data>
+
+
+        <LinearLayout
+            android:background="@drawable/item_seletor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="15dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="200dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                >
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/projectName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textSize="14sp"
+                    app:htmlText="@{article.title}"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/projectDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/projectName"
+                    android:layout_above="@+id/projectTime"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    android:ellipsize="end"
+                    android:maxLines="9"
+                    android:text="@{article.desc}"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/projectTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:layout_alignParentBottom="true"
+                    android:text="@{article.niceDate+`  `+article.author}"/>
+            </RelativeLayout>
+            <com.wanandroid.customui.RoundAngleImageView
+                android:id="@+id/projectImg"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                app:roundWidth="15dp"
+                app:roundHeight="15dp"
+                android:src="@color/colorPrimary"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+</layout>
