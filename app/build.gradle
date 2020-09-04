@@ -40,6 +40,9 @@ android {
         dataBinding = true
     }
 }
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -77,5 +80,6 @@ dependencies {
     implementation Deps.verticalTabLayout
     implementation Deps.flowLayout
 
-
+    implementation Deps.glide
+    kapt Deps.glide_compiler
 }

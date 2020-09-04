@@ -39,6 +39,9 @@ object Versions {
 
     const val verticalTabLayout = "1.2.5"
     const val flowLayout = "1.1.2"
+
+    const val glide = "4.11.0"
+    const val glide_compiler = "4.11.0"
 }
 
 object Deps {
@@ -79,4 +82,8 @@ object Deps {
 
     const val verticalTabLayout = "q.rorbin:VerticalTabLayout:${Versions.verticalTabLayout}"
     const val flowLayout = "com.hyman:flowlayout-lib:${Versions.flowLayout}"
+
+    //Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_compiler}"
 }
