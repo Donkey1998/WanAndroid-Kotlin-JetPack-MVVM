@@ -1,14 +1,11 @@
 package com.wanandroid
 
-import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.text.Html
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebSettings
@@ -36,6 +33,7 @@ class BrowserActivity : BaseActivity() {
     override fun getLayoutResId() = R.layout.activity_browser
 
     override fun initView() {
+        mToolbar.title = getString(R.string.is_loading)
         mToolbar.setNavigationIcon(R.drawable.ic_back)
         setSupportActionBar(mToolbar);
         initWebView()
@@ -159,8 +157,10 @@ class BrowserActivity : BaseActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-//    override fun onBackPressed() {
-//        super.onBackPressed()
-//    }
+
+    override fun onDestroy() {
+        if (webView != null) webView.destroy()
+        super.onDestroy()
+    }
 
 }
