@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import android.view.View
 import com.tencent.smtt.sdk.WebChromeClient
+import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import com.wanandroid.base.BaseActivity
@@ -42,6 +43,10 @@ class BrowserActivity : BaseActivity() {
         webView.run {
             webViewClient = object : WebViewClient() {
 
+                override fun shouldOverrideUrlLoading(view: WebView?,url: String?): Boolean {
+                    return false
+                }
+
                 override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
                     super.onPageStarted(p0, p1, p2)
                     progressBar.visibility = View.VISIBLE
@@ -66,6 +71,9 @@ class BrowserActivity : BaseActivity() {
 
             }
         }
+        val webSetting: WebSettings = webView.getSettings()
+        webSetting.setSupportMultipleWindows(false)
+        webSetting.domStorageEnabled = true
     }
 
     override fun onBackPressed() {
