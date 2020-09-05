@@ -67,10 +67,18 @@ class Share {
         }
 
         fun startBrowser(){
-            val intent = Intent(Intent.ACTION_VIEW,Uri.parse(URL)).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+            if(URL.startsWith("http")){ //拦截非法链接
+                val intent = Intent(Intent.ACTION_VIEW,Uri.parse(URL)).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
+                if (intent.resolveActivity(App.getContext().packageManager) != null) {
+                    startActivity(App.getContext(), intent, null);
+                }
+            }else{
+                Toast.makeText(App.getContext(),"非法链接", Toast.LENGTH_SHORT).show();
             }
-            startActivity(App.getContext(), intent, null)
+
         }
 
         fun moreShare(){

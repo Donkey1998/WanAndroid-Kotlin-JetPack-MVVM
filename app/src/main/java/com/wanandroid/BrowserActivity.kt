@@ -1,11 +1,14 @@
 package com.wanandroid
 
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.text.Html
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebSettings
@@ -78,7 +81,10 @@ class BrowserActivity : BaseActivity() {
         mToolbar.setNavigationOnClickListener { onBackPressed() }
 
         intent?.extras?.getString(URL).let {
-            webView.loadUrl(it)
+            if(it!!.startsWith("http:")||it.startsWith("https:")){
+                //对http或者https协议的链接进行加载
+                webView!!.loadUrl(it)
+            }
         }
     }
 
@@ -90,7 +96,18 @@ class BrowserActivity : BaseActivity() {
 
                 override fun shouldOverrideUrlLoading(view: WebView?,url: String?): Boolean {
                     Share.URL = url.toString()
-                    return false
+                    return if(url!!.startsWith("http:")||url.startsWith("https:")){
+                        //对http或者https协议的链接进行加载
+                        view!!.loadUrl(url)
+                        false
+                    }else{
+                        //使用系统webview 不用intent也可以直接返回true
+//                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                        if (intent.resolveActivity(App.getContext().packageManager) != null) {
+//                            ContextCompat.startActivity(App.getContext(), intent, null);
+//                        }
+                        true
+                    }
                 }
 
                 override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
