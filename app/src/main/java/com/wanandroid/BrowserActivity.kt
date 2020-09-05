@@ -1,8 +1,5 @@
 package com.wanandroid
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.graphics.Bitmap
 import android.text.Html
 import android.util.Log
@@ -36,36 +33,36 @@ class BrowserActivity : BaseActivity() {
     override fun getLayoutResId() = R.layout.activity_browser
 
     override fun initView() {
-        mToolbar.title = getString(R.string.is_loading)
-        mToolbar.setNavigationIcon(R.drawable.arrow_back)
+        mToolbar.setNavigationIcon(R.drawable.ic_back)
         setSupportActionBar(mToolbar);
         initWebView()
         initShareDialog()
     }
 
     private fun initShareDialog() {
-        val  text : String? = Html.fromHtml(intent?.extras?.getString(TITLE)).toString()+ ":  "+intent?.extras?.getString(URL)
+        Share.URL = intent?.extras?.getString(URL).toString()
+        Share.Title = Html.fromHtml(intent?.extras?.getString(TITLE)).toString()
 
         bottomSheetDialog.run {
             setContentView(R.layout.dialog_share)
             qqImageButton.setOnClickListener {
-                Share.shareToQQ(text)
+                Share.shareToQQ()
                 dismiss()
             }
             wxImageButton.setOnClickListener {
-                Share.shareToWX(text)
+                Share.shareToWX()
                 dismiss()
             }
             linkImageButton.setOnClickListener {
-                Share.copyLink(intent?.extras?.getString(URL))
+                Share.copyLink()
                 dismiss()
             }
             browserImageButton.setOnClickListener {
-                Share.startBrowser(intent?.extras?.getString(URL))
+                Share.startBrowser()
                 dismiss()
             }
             moreImageButton.setOnClickListener {
-                Share.moreShare(text)
+                Share.moreShare()
                 dismiss()
             }
             cancel_button.setOnClickListener {
@@ -92,11 +89,13 @@ class BrowserActivity : BaseActivity() {
             webViewClient = object : WebViewClient() {
 
                 override fun shouldOverrideUrlLoading(view: WebView?,url: String?): Boolean {
+                    Share.URL = url.toString()
                     return false
                 }
 
                 override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
                     super.onPageStarted(p0, p1, p2)
+                    mToolbar.title = getString(R.string.is_loading)
                     progressBar.visibility = View.VISIBLE
                 }
 
@@ -109,12 +108,18 @@ class BrowserActivity : BaseActivity() {
                 override fun onProgressChanged(p0: WebView?, p1: Int) {
                     super.onProgressChanged(p0, p1)
                     progressBar.progress = p1
-                    Log.e("browser", p1.toString())
+                    Log.e("browser1", p1.toString())
                 }
 
                 override fun onReceivedTitle(p0: WebView?, p1: String?) {
                     super.onReceivedTitle(p0, p1)
-                    p1?.let { mToolbar.title = p1 }
+                    Log.e("browser2", p1.toString())
+                    p1?.let {
+                        if(p1.indexOf("http") == -1){  //p1有时候会返回url链接
+                            mToolbar.title = p1
+                            Share.Title= Html.fromHtml("$p1:  ").toString()
+                        }
+                    }
                 }
 
             }
@@ -137,9 +142,8 @@ class BrowserActivity : BaseActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    override fun onBackPressed() {
-        if (webView.canGoBack()) webView.goBack()
-        else super.onBackPressed()
-    }
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//    }
 
 }
