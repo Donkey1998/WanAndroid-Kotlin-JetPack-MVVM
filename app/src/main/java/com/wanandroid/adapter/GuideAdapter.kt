@@ -1,11 +1,14 @@
 package com.wanandroid.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.navigation.fragment.NavHostFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.wanandroid.BrowserActivity
 import com.wanandroid.R
 import com.wanandroid.model.resultbean.Article
 import com.wanandroid.model.resultbean.Guide
@@ -32,8 +35,15 @@ class GuideAdapter (layoutResId: Int = R.layout.item_guide) : BaseQuickAdapter<G
                     return tv
                 }
             }
+            setOnTagClickListener { view, position, _ ->
+                val bundle = Bundle()
+                bundle.putString(BrowserActivity.URL,item.articles[position].link)
+                bundle.putString(BrowserActivity.TITLE,item.articles[position].link)
+                androidx.navigation.Navigation.findNavController(view)
+                    .navigate(R.id.browserActivity, bundle)
+                true
+            }
 
         }
     }
 }
-
