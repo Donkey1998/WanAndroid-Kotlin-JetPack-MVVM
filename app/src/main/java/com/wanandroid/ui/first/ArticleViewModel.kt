@@ -7,6 +7,7 @@ import com.wanandroid.base.BaseViewModel
 import com.wanandroid.model.http.ResponseResult
 import com.wanandroid.model.repository.FirstRepository
 import com.wanandroid.model.repository.LastedProjectRepository
+import com.wanandroid.model.repository.SquareRepository
 import com.wanandroid.model.resultbean.Article
 import com.wanandroid.model.resultbean.ArticleList
 import kotlinx.coroutines.Dispatchers
@@ -21,10 +22,12 @@ class ArticleViewModel: BaseViewModel() {
     sealed class ArticleType {
         object First : ArticleType()                 // 首页
         object LatestProject : ArticleType()        // 最新项目
+        object Square: ArticleType() //广场
     }
 
     private val firstRepository = FirstRepository()
     private val lastedProjectRepository = LastedProjectRepository();
+    private val squareRepository = SquareRepository();
     private var _uiState = MutableLiveData<ArticleUiModel>()
     private var currentPage = 0
 
@@ -39,8 +42,13 @@ class ArticleViewModel: BaseViewModel() {
         getLastedProjectList(true)
     }
 
+    val refreshSquareList: ()-> Unit = {  //下拉刷新
+        getSquareList(true)
+    }
+
     fun getFirstArticleList(isRefresh: Boolean = false) = getArticleList(ArticleType.First,isRefresh);
     fun getLastedProjectList(isRefresh: Boolean = false) = getArticleList(ArticleType.LatestProject,isRefresh);
+    fun getSquareList(isRefresh: Boolean = false) = getArticleList(ArticleType.Square,isRefresh);
 
     private fun getArticleList(articleType: ArticleType, isRefresh: Boolean = false) {
         emitArticleUiState(currentPage==0)
@@ -50,6 +58,7 @@ class ArticleViewModel: BaseViewModel() {
                 when (articleType) {
                     ArticleType.First ->  firstRepository.getArticleList(currentPage)
                     ArticleType.LatestProject ->  lastedProjectRepository.getLastedProject(currentPage)
+                    ArticleType.Square-> squareRepository.getSquareArticleList(currentPage)
                 }
                 }
             if (result is ResponseResult.Success) {

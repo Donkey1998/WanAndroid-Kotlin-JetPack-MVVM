@@ -30,4 +30,7 @@ interface WanService {
 
     @GET("/article/listproject/{page}/json")
     suspend fun getLastedProject(@Path("page") page: Int): WanResponse<ArticleList>
+
+    @GET("/user_article/list/{page}/json")
+    suspend fun getSquareArticleList(@Path("page") page: Int): WanResponse<ArticleList>
 }

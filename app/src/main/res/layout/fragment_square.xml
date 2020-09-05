@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.wanandroid.ui.first.ArticleViewModel" />
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+    </data>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/homeRefreshLayout"
+        android:background="@color/containerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        binding:isRefresh="@{viewModel.uiState.showLoading}"
+        binding:onRefresh="@{viewModel.refreshSquareList}">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lastedProjectRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            itemBottomPadding="10dp"
+            adapter="@{adapter}">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
