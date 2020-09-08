@@ -1,9 +1,6 @@
 package com.wanandroid.model.http
 
-import com.wanandroid.model.resultbean.ArticleList
-import com.wanandroid.model.resultbean.Guide
-import com.wanandroid.model.resultbean.Project
-import com.wanandroid.model.resultbean.User
+import com.wanandroid.model.resultbean.*
 import retrofit2.http.*
 
 /**
@@ -33,4 +30,11 @@ interface WanService {
 
     @GET("/user_article/list/{page}/json")
     suspend fun getSquareArticleList(@Path("page") page: Int): WanResponse<ArticleList>
+
+    @GET("/wxarticle/chapters/json  ")
+    suspend fun getBlogType(): WanResponse<List<BlogType>>
+
+    @GET("/wxarticle/list/{id}/{page}/json")
+    suspend fun getBlogArticleList(  @Path("page") page: Int,@Path("id") id: Int): WanResponse<ArticleList>
+
 }

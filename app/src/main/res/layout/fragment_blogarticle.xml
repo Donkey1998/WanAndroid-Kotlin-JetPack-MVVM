@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.wanandroid.ui.first.ArticleViewModel" />
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/blogRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        binding:isRefresh="@{viewModel.uiState.showLoading}"
+        >
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/blogRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="20dp"
+            adapter="@{adapter}">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wanandroid.base.BaseViewModel
 import com.wanandroid.model.http.ResponseResult
+import com.wanandroid.model.repository.BlogRepository
 import com.wanandroid.model.repository.FirstRepository
 import com.wanandroid.model.repository.LastedProjectRepository
 import com.wanandroid.model.repository.SquareRepository
@@ -23,11 +24,13 @@ class ArticleViewModel: BaseViewModel() {
         object First : ArticleType()                 // 首页
         object LatestProject : ArticleType()        // 最新项目
         object Square: ArticleType() //广场
+        object Blog: ArticleType() //公众号
     }
 
     private val firstRepository = FirstRepository()
     private val lastedProjectRepository = LastedProjectRepository();
     private val squareRepository = SquareRepository();
+    private val blogRepository = BlogRepository()
     private var _uiState = MutableLiveData<ArticleUiModel>()
     private var currentPage = 0
 
@@ -49,8 +52,9 @@ class ArticleViewModel: BaseViewModel() {
     fun getFirstArticleList(isRefresh: Boolean = false) = getArticleList(ArticleType.First,isRefresh);
     fun getLastedProjectList(isRefresh: Boolean = false) = getArticleList(ArticleType.LatestProject,isRefresh);
     fun getSquareList(isRefresh: Boolean = false) = getArticleList(ArticleType.Square,isRefresh);
+    fun getBlogArticleList(isRefresh: Boolean = false, id: Int) = getArticleList(ArticleType.Blog,isRefresh,id)
 
-    private fun getArticleList(articleType: ArticleType, isRefresh: Boolean = false) {
+    private fun getArticleList(articleType: ArticleType, isRefresh: Boolean = false,id :Int = 0) {
         emitArticleUiState(currentPage==0)
         if(isRefresh) currentPage = 0 //下拉刷新时将currentPage置0
         viewModelScope.launch (Dispatchers.Main){
@@ -59,6 +63,7 @@ class ArticleViewModel: BaseViewModel() {
                     ArticleType.First ->  firstRepository.getArticleList(currentPage)
                     ArticleType.LatestProject ->  lastedProjectRepository.getLastedProject(currentPage)
                     ArticleType.Square-> squareRepository.getSquareArticleList(currentPage)
+                    ArticleType.Blog -> blogRepository.getBlogArticleList(currentPage,id)
                 }
                 }
             if (result is ResponseResult.Success) {
