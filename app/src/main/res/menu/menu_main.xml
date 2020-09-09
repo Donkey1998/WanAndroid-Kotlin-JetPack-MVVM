@@ -12,11 +12,6 @@
 		android:title="@string/blog" />
 
 	<item
-		android:id="@+id/searchFragment"
-		android:icon="@drawable/search"
-		android:title="@string/search" />
-
-	<item
 		android:id="@+id/projectFragment"
 		android:icon="@drawable/ic_dashboard_black_24dp"
 		android:title="@string/project_type" />
