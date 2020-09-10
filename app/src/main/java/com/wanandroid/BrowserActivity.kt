@@ -91,20 +91,15 @@ class BrowserActivity : BaseActivity() {
                 .getDrawable(R.drawable.color_progressbar)
         webView.run {
             webViewClient = object : WebViewClient() {
-
+                // shouldOverrideUrlLoading返回值的处理：https://blog.csdn.net/cui130/article/details/85569426
                 override fun shouldOverrideUrlLoading(view: WebView?,url: String?): Boolean {
-                    Share.URL = url.toString()
                     return if(url!!.startsWith("http:")||url.startsWith("https:")){
+                        Share.URL = url.toString()
                         //对http或者https协议的链接进行加载
                         view!!.loadUrl(url)
-                        false
+                        false // 若设置WebViewClient 且 return false： 就会使用我们自己的webView来打开url
                     }else{
-                        //使用系统webview 不用intent也可以直接返回true
-//                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//                        if (intent.resolveActivity(App.getContext().packageManager) != null) {
-//                            ContextCompat.startActivity(App.getContext(), intent, null);
-//                        }
-                        true
+                        true //  若设置WebViewClient 且 return true： 表示当前url即使是重定向url也不会再执行（除了在return true之前使用webView.loadUrl(url)除外，因为这个会重新加载）
                     }
                 }
 
