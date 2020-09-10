@@ -12,9 +12,9 @@
 		android:title="@string/blog" />
 
 	<item
-		android:id="@+id/projectFragment"
+		android:id="@+id/questionFragment"
 		android:icon="@drawable/ic_dashboard_black_24dp"
-		android:title="@string/project_type" />
+		android:title="@string/question" />
 	<item
 		android:id="@+id/profileFragment"
 		android:icon="@drawable/ic_profile"

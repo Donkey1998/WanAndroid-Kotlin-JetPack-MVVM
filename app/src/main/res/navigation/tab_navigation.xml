@@ -22,8 +22,8 @@
         android:label="SearchFragment" />
 
     <fragment
-        android:id="@+id/projectFragment"
-        android:name="com.wanandroid.ui.project.ProjectFragment"
+        android:id="@+id/questionFragment"
+        android:name="com.wanandroid.ui.question.QuestionFragment"
         android:label="ProjectFragment" />
 
     <fragment
