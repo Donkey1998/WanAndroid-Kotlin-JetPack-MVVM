@@ -45,6 +45,10 @@ class QuestionFragment : BaseVMFragment<QuestionProjectBinding>(R.layout.questio
             questionArticleAdapter.setEnableLoadMore(false)
             refresh()
         }
+        search_btn.setOnClickListener {
+            NavHostFragment.findNavController(this@QuestionFragment)
+                .navigate(R.id.searchActivity)
+        }
     }
 
     private fun loadMore() {

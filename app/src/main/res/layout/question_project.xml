@@ -33,6 +33,7 @@
             android:textColor="@color/white"
             />
         <ImageButton
+            android:id="@+id/search_btn"
             android:background="@color/colorPrimary"
             android:layout_width="28dp"
             android:layout_height="28dp"

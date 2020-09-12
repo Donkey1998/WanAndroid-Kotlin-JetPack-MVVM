@@ -16,10 +16,10 @@
         android:name="com.wanandroid.ui.blog.BlogFragment"
         android:label="BlogFragment" />
 
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.wanandroid.ui.search.SearchFragment"
-        android:label="SearchFragment" />
+    <activity
+        android:id="@+id/searchActivity"
+        android:name="com.wanandroid.ui.search.SearchActivity"
+        android:label="SearchActivity" />
 
     <fragment
         android:id="@+id/questionFragment"
