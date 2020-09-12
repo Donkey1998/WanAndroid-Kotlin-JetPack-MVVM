@@ -42,4 +42,9 @@ interface WanService {
 
     @GET("/hotkey/json")
     suspend fun getPopularSearchList(): WanResponse<List<PopularSearch>>
+
+    @FormUrlEncoded
+    @POST("article/query/{page}/json")
+    suspend fun getSearchResultList(@Path("page") page: Int,
+                        @Field("k") key: String): WanResponse<ArticleList>
 }

@@ -97,5 +97,11 @@ class SearchActivity : BaseActivity() {
 
     fun search( key:String){
         Log.d("SearchActivity","点击了"+key)
+        val imm = App.getContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        // 关闭软键盘
+        imm.hideSoftInputFromWindow(search_tile!!.windowToken, 0);
+        showResultFragment()
+        mSearchResultFragment?.search(key)
+
     }
 }

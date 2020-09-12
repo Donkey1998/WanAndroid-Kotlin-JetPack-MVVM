@@ -23,6 +23,7 @@ class ArticleViewModel: BaseViewModel() {
         object Square: ArticleType() //广场
         object Blog: ArticleType() //公众号
         object Question : ArticleType() //每日一问
+        object Search : ArticleType() //搜索
     }
 
     private val firstRepository = FirstRepository()
@@ -30,6 +31,7 @@ class ArticleViewModel: BaseViewModel() {
     private val squareRepository = SquareRepository();
     private val blogRepository = BlogRepository()
     private val questionRepository =QuestionRepository()
+    private val searchResultRepository = SearchResultRepository()
     private var _uiState = MutableLiveData<ArticleUiModel>()
     private var currentPage = 0
 
@@ -53,8 +55,9 @@ class ArticleViewModel: BaseViewModel() {
     fun getSquareList(isRefresh: Boolean = false) = getArticleList(ArticleType.Square,isRefresh);
     fun getBlogArticleList(isRefresh: Boolean = false, id: Int) = getArticleList(ArticleType.Blog,isRefresh,id)
     fun getQuestionList(isRefresh: Boolean = false) = getArticleList(ArticleType.Question, isRefresh)
+    fun getSearchResultList(isRefresh: Boolean = false,searchKey: String) = getArticleList(ArticleType.Search, isRefresh,0,searchKey)
 
-    private fun getArticleList(articleType: ArticleType, isRefresh: Boolean = false,id :Int = 0) {
+    private fun getArticleList(articleType: ArticleType, isRefresh: Boolean = false,id :Int = 0,searchKey :String = "") {
         emitArticleUiState(currentPage==0)
         if(isRefresh) currentPage = 0 //下拉刷新时将currentPage置0
         viewModelScope.launch (Dispatchers.Main){
@@ -65,6 +68,7 @@ class ArticleViewModel: BaseViewModel() {
                     ArticleType.Square-> squareRepository.getSquareArticleList(currentPage)
                     ArticleType.Blog -> blogRepository.getBlogArticleList(currentPage,id)
                     ArticleType.Question -> questionRepository.getQuestionList(currentPage)
+                    ArticleType.Search -> searchResultRepository.getSearchResultList(currentPage,searchKey)
                 }
                 }
             if (result is ResponseResult.Success) {
