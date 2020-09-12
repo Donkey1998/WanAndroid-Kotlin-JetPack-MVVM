@@ -4,4 +4,7 @@
         <attr name="roundWidth" format="dimension" />
         <attr name="roundHeight" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="SearchTitleView">
+        <attr name="hint" format="string" />
+    </declare-styleable>
 </resources>
