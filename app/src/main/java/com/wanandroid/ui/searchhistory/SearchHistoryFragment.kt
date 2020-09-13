@@ -54,7 +54,7 @@ class SearchHistoryFragment :BaseVMFragment<FragmentSearchHistoryBinding>(R.layo
     private fun search(key: String) {
         if (activity is SearchActivity) {
             val activity: SearchActivity? = activity as SearchActivity?
-            activity?.search(key)
+            activity?.searchResult(key)
         }
     }
 }

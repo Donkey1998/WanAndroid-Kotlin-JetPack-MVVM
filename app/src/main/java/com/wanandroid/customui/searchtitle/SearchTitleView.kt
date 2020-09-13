@@ -106,4 +106,8 @@ class SearchTitleView :LinearLayout {
         this.onSearchTitleListener = onSearchTitleListener
     }
 
+    fun getSearchEditText() : EditText? {
+        return searchEditText
+    }
+
 }

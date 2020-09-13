@@ -35,13 +35,13 @@ class SearchActivity : BaseActivity() {
 
             override fun search(searchStr: String?) {
                 if (!mIsResultPage) {
-                    showResultFragment()
+                    searchStr?.let { searchResult(it) }
                 }
             }
 
             override fun rightButton(searchStr: String?) {
                 if (!mIsResultPage) {
-                    showResultFragment()
+                    searchStr?.let { searchResult(it) }
                 }
             }
 
@@ -95,8 +95,12 @@ class SearchActivity : BaseActivity() {
         t.commit()
     }
 
-    fun search( key:String){
+    fun searchResult( key:String){
         Log.d("SearchActivity","点击了"+key)
+        search_tile.getSearchEditText()?.let {
+            it.setText(key) //设置文字
+            it.setSelection(key.length) // 设置光标位置
+        }
         val imm = App.getContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         // 关闭软键盘
         imm.hideSoftInputFromWindow(search_tile!!.windowToken, 0);

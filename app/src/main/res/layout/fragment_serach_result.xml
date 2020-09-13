@@ -12,7 +12,7 @@
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/blogRefreshLayout"
+        android:id="@+id/searchResultRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         binding:isRefresh="@{viewModel.uiState.showLoading}"
@@ -21,7 +21,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/blogRecycleView"
+            android:id="@+id/searchResultRecycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
