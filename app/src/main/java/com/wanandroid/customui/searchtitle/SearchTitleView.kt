@@ -61,6 +61,7 @@ class SearchTitleView :LinearLayout {
         }, 100)
 
         searchEditText?.let {
+                requestFocus() //Android9.0系统如果控件需要实现光标，则需要手动调取xxx 的requestFocus()方法
              it.addTextChangedListener(object : TextWatcher {
              override fun beforeTextChanged(text: CharSequence,start: Int,count: Int, after: Int) {
                  //输入文字前触发
