@@ -1,5 +1,6 @@
 package com.wanandroid.ui.searchresult
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -14,8 +15,9 @@ import com.wanandroid.databinding.FragmentSerachResultBinding
 import com.wanandroid.model.resultbean.Article
 import com.wanandroid.ui.first.ArticleViewModel
 import com.wanandroid.view.CustomLoadMoreView
-import kotlinx.android.synthetic.main.fragment_blogarticle.*
+import kotlinx.android.synthetic.main.fragment_serach_result.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 /**
  * Created by Donkey
@@ -35,19 +37,20 @@ class SearchResultFragment:BaseVMFragment<FragmentSerachResultBinding>(R.layout.
                 val bundle = Bundle()
                 bundle.putString(BrowserActivity.URL,searchResultArticleAdapter.data[position].link)
                 bundle.putString(BrowserActivity.TITLE,searchResultArticleAdapter.data[position].title)
-                NavHostFragment.findNavController(this@SearchResultFragment)
-                    .navigate(R.id.browserActivity, bundle)
+                val intent = Intent(activity, BrowserActivity::class.java)
+                intent.putExtras(bundle);
+                startActivity(intent)
             }
             setLoadMoreView(CustomLoadMoreView())//添加上拉加载更多布局
-            setOnLoadMoreListener({ loadMore() }, blogRecycleView) //上拉加载更多
+            setOnLoadMoreListener({ loadMore() }, searchResultRecycleView) //上拉加载更多
         }
-        blogRefreshLayout.setOnRefreshListener {
+        searchResultRefreshLayout.setOnRefreshListener {
             searchResultArticleAdapter.setEnableLoadMore(false)
             search(searchKey)
         }
     }
 
-    fun loadMore(){
+    private fun loadMore(){
         articleViewModel.getSearchResultList(false,searchKey)
     }
 
