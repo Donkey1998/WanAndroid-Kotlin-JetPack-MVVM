@@ -2,9 +2,10 @@ package com.wanandroid.ui.searchresult
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.NavHostFragment
 import com.wanandroid.App
 import com.wanandroid.BR
 import com.wanandroid.BrowserActivity
@@ -15,6 +16,7 @@ import com.wanandroid.databinding.FragmentSerachResultBinding
 import com.wanandroid.model.resultbean.Article
 import com.wanandroid.ui.first.ArticleViewModel
 import com.wanandroid.view.CustomLoadMoreView
+import kotlinx.android.synthetic.main.empty.view.*
 import kotlinx.android.synthetic.main.fragment_serach_result.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -55,6 +57,15 @@ class SearchResultFragment:BaseVMFragment<FragmentSerachResultBinding>(R.layout.
     }
 
     fun search(search :String){
+        // TODO 当搜索结果为空时  再次搜索会显示空白页 为了优化将空白页的ic和text更换为加载中
+        val emptyLayout: View = layoutInflater.inflate(R.layout.empty, null)
+        emptyLayout.tv_empty.text = "加载中..."
+        emptyLayout.ic_empty.setImageResource(R.drawable.ic_loading)
+        emptyLayout.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        searchResultArticleAdapter.emptyView = emptyLayout
         searchKey = search
         articleViewModel.getSearchResultList(true,search)
     }
@@ -69,6 +80,15 @@ class SearchResultFragment:BaseVMFragment<FragmentSerachResultBinding>(R.layout.
                     setEnableLoadMore(false)
                     if (it.isRefresh){
                         replaceData(list.datas)
+                        if(list.datas.isEmpty()){
+                            // TODO 空白页待优化 可以做成一个错误提示、空白页...共用界面
+                            val emptyLayout: View = layoutInflater.inflate(R.layout.empty, null)
+                            emptyLayout.layoutParams = ViewGroup.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.MATCH_PARENT
+                            )
+                            emptyView = emptyLayout
+                        }
                     }else{
                         addData(list.datas)
                     }
