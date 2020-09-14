@@ -76,7 +76,7 @@ class ArticleViewModel: BaseViewModel() {
                 val articleList = result.data
 
                 if (articleList.offset >= articleList.total) { //已经是最后一页了
-                    emitArticleUiState(showLoading = false, showEnd = true)
+                    emitArticleUiState(showLoading = false, successData = articleList,showEnd = true,isRefresh=isRefresh)
                     return@launch
                 }
                 emitArticleUiState(showLoading = false, successData = articleList, isRefresh=isRefresh)
