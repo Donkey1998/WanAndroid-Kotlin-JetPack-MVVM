@@ -33,7 +33,7 @@ class FirstFragment() : BaseVMFragment<FragmentFirstBinding>(R.layout.fragment_f
     private val bannerImages = mutableListOf<String>()
     private val bannerTitles = mutableListOf<String>()
     private val bannerUrls = mutableListOf<String>()
-    private val banner by lazy { com.youth.banner.Banner(activity) }
+    private val banner by lazy { MyBanner(activity) }
     override fun initView() {
         binding.run {
          viewModel = articleViewModel
