@@ -42,6 +42,7 @@ object Versions {
 
     const val glide = "4.11.0"
     const val glide_compiler = "4.11.0"
+    const val customactivityoncrash = "2.3.0"
 }
 
 object Deps {
@@ -86,4 +87,7 @@ object Deps {
     //Glide
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_compiler}"
+
+    //
+    const val customactivityoncrash = "cat.ereza:customactivityoncrash:${Versions.customactivityoncrash}"
 }
