@@ -5,6 +5,7 @@ import com.wanandroid.model.http.BaseRepository
 import com.wanandroid.model.http.ResponseResult
 import com.wanandroid.model.http.WanRetrofitClient
 import com.wanandroid.model.resultbean.ArticleList
+import com.wanandroid.model.resultbean.Banner
 import com.wanandroid.model.resultbean.User
 
 /**
@@ -12,6 +13,13 @@ import com.wanandroid.model.resultbean.User
  * on 2020/8/13
  */
 class FirstRepository: BaseRepository() {
+
+    suspend fun getBanners(): ResponseResult<List<Banner>> {
+        return safeApiCall(call = {requestBanners()},errorMessage = "")
+    }
+
+    private suspend fun requestBanners(): ResponseResult<List<Banner>> =
+        executeResponse(WanRetrofitClient.service.getBanner())
 
     suspend fun getArticleList(page: Int): ResponseResult<ArticleList> {
         return safeApiCall(call = { requestArticleList(page) }, errorMessage = "")

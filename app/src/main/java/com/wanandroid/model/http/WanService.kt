@@ -19,6 +19,9 @@ interface WanService {
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page: Int): WanResponse<ArticleList>
 
+    @GET("/banner/json")
+    suspend fun getBanner(): WanResponse<List<Banner>>
+
     @GET("/navi/json")
     suspend fun getGuide():WanResponse<List<Guide>>
 

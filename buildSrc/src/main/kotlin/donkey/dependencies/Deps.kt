@@ -43,6 +43,8 @@ object Versions {
     const val glide = "4.11.0"
     const val glide_compiler = "4.11.0"
     const val customactivityoncrash = "2.3.0"
+
+    const val banner = "1.4.10"
 }
 
 object Deps {
@@ -88,6 +90,8 @@ object Deps {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_compiler}"
 
-    //
+    //崩溃捕捉框架
     const val customactivityoncrash = "cat.ereza:customactivityoncrash:${Versions.customactivityoncrash}"
+
+    const val banner = "com.youth.banner:banner:${Versions.banner}"
 }

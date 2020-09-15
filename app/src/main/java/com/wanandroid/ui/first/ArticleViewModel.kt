@@ -8,6 +8,7 @@ import com.wanandroid.model.http.ResponseResult
 import com.wanandroid.model.repository.*
 import com.wanandroid.model.resultbean.Article
 import com.wanandroid.model.resultbean.ArticleList
+import com.wanandroid.model.resultbean.Banner
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -33,10 +34,13 @@ class ArticleViewModel: BaseViewModel() {
     private val questionRepository =QuestionRepository()
     private val searchResultRepository = SearchResultRepository()
     private var _uiState = MutableLiveData<ArticleUiModel>()
+    private var _mBanners = MutableLiveData<List<Banner>>()
     private var currentPage = 0
 
     val uiState: LiveData<ArticleUiModel>
         get() = _uiState
+    val mBanners: LiveData<List<Banner>>
+        get() = _mBanners
 
     val refreshHome: ()-> Unit = {  //下拉刷新
         getFirstArticleList(true)
@@ -48,6 +52,18 @@ class ArticleViewModel: BaseViewModel() {
 
     val refreshSquareList: ()-> Unit = {  //下拉刷新
         getSquareList(true)
+    }
+
+    fun getBannerList(){
+        viewModelScope.launch(Dispatchers.Main) {
+            val result = withContext(Dispatchers.IO){
+                firstRepository.getBanners()
+            }
+            if(result is ResponseResult.Success) {
+                _mBanners.value = result.data
+            }
+
+        }
     }
 
     fun getFirstArticleList(isRefresh: Boolean = false) = getArticleList(ArticleType.First,isRefresh);

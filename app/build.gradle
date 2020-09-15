@@ -83,4 +83,5 @@ dependencies {
     implementation Deps.glide
     kapt Deps.glide_compiler
     implementation Deps.customactivityoncrash
+    implementation Deps.banner
 }
