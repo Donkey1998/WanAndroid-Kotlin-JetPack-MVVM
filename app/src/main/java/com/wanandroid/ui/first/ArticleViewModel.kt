@@ -53,13 +53,22 @@ class ArticleViewModel: BaseViewModel() {
     fun getFirstArticleList(isRefresh: Boolean = false) = getArticleList(ArticleType.First,isRefresh);
     fun getLastedProjectList(isRefresh: Boolean = false) = getArticleList(ArticleType.LatestProject,isRefresh);
     fun getSquareList(isRefresh: Boolean = false) = getArticleList(ArticleType.Square,isRefresh);
-    fun getBlogArticleList(isRefresh: Boolean = false, id: Int) = getArticleList(ArticleType.Blog,isRefresh,id)
+    fun getBlogArticleList(isRefresh: Boolean = false, id: Int) {
+        if(isRefresh){
+            currentPage=1//获取公众号数据页数是从1开始的
+        }
+        getArticleList(ArticleType.Blog,isRefresh,id)
+    }
+
     fun getQuestionList(isRefresh: Boolean = false) = getArticleList(ArticleType.Question, isRefresh)
     fun getSearchResultList(isRefresh: Boolean = false,searchKey: String) = getArticleList(ArticleType.Search, isRefresh,0,searchKey)
 
     private fun getArticleList(articleType: ArticleType, isRefresh: Boolean = false,id :Int = 0,searchKey :String = "") {
-        emitArticleUiState(currentPage==0)
-        if(isRefresh) currentPage = 0 //下拉刷新时将currentPage置0
+        emitArticleUiState(showLoading =  if(articleType == ArticleType.Blog) currentPage==1 else currentPage==0) //刷新下拉的loading
+        if(isRefresh) { //下拉刷新时将currentPage置0  //获取公众号数据页数是从1开始的
+            currentPage = if(articleType == ArticleType.Blog) {1} else 0
+        }
+
         viewModelScope.launch (Dispatchers.Main){
             val result = withContext(Dispatchers.IO){
                 when (articleType) {
