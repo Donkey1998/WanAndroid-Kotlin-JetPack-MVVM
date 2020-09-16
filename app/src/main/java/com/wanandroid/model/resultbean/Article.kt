@@ -34,4 +34,5 @@ data class Article (val id: Int,
                     val shareDate:Long,
                     val shareUser:String,
                     val tags:Any, // Not sure
-                    val userId:Int): Serializable
+                    val userId:Int,
+                    var isTop: Boolean ? = false): Serializable

@@ -4,6 +4,7 @@ import android.util.Log
 import com.wanandroid.model.http.BaseRepository
 import com.wanandroid.model.http.ResponseResult
 import com.wanandroid.model.http.WanRetrofitClient
+import com.wanandroid.model.resultbean.Article
 import com.wanandroid.model.resultbean.ArticleList
 import com.wanandroid.model.resultbean.Banner
 import com.wanandroid.model.resultbean.User
@@ -20,6 +21,17 @@ class FirstRepository: BaseRepository() {
 
     private suspend fun requestBanners(): ResponseResult<List<Banner>> =
         executeResponse(WanRetrofitClient.service.getBanner())
+
+    suspend fun getTopArticleList(): ResponseResult<List<Article>> {
+        return safeApiCall(call = { requestTopArticleList() }, errorMessage = "")
+    }
+
+    private suspend fun requestTopArticleList(): ResponseResult<List<Article>> {
+        val response = WanRetrofitClient.service.getTopArticleList()
+
+        return executeResponse(response)
+
+    }
 
     suspend fun getArticleList(page: Int): ResponseResult<ArticleList> {
         return safeApiCall(call = { requestArticleList(page) }, errorMessage = "")

@@ -1,5 +1,6 @@
 package com.wanandroid.ui.first
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,9 +10,11 @@ import com.wanandroid.model.repository.*
 import com.wanandroid.model.resultbean.Article
 import com.wanandroid.model.resultbean.ArticleList
 import com.wanandroid.model.resultbean.Banner
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
 /**
  * Created by Donkey
@@ -43,7 +46,7 @@ class ArticleViewModel: BaseViewModel() {
         get() = _mBanners
 
     val refreshHome: ()-> Unit = {  //下拉刷新
-        getFirstArticleList(true)
+        getBannerList()
     }
 
     val refreshLastedProject: ()-> Unit = {  //下拉刷新
@@ -63,6 +66,39 @@ class ArticleViewModel: BaseViewModel() {
                 _mBanners.value = result.data
             }
 
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    /*
+      使用flow将置顶的文章和首页第0页的文章拼接在一起
+      flow的使用参考文档 https://www.jianshu.com/p/fe1293e8f15c
+     */
+    fun getFirstArticleList() {
+        currentPage=0;
+        emitArticleUiState(showLoading = true)
+        viewModelScope.launch(Dispatchers.Main){
+            flow {
+               val topArticleResult= firstRepository.getTopArticleList()
+                val result = firstRepository.getArticleList(0)
+                if(result is ResponseResult.Success && topArticleResult is ResponseResult.Success){
+                    val articleList = result.data
+                    articleList.datas.addAll(0,topArticleResult.data) //数据拼接
+                    currentPage++
+                    emit(articleList)
+                }
+            }.map {
+                for ( (index, element)in it.datas.withIndex()) {
+                  if(index<4){
+                      element.isTop = true
+                  }
+                }
+                it
+            }.
+            flowOn(Dispatchers.IO) //指定flow的运行线程
+                .collect{//collect的运行线程需要看launch的线程
+                emitArticleUiState(showLoading = false, successData = it, isRefresh=true)
+            }
         }
     }
 
@@ -134,7 +170,8 @@ class ArticleViewModel: BaseViewModel() {
         val successData: ArticleList?,
         val showEnd: Boolean, // 加载更多
         val isRefresh: Boolean, // 下拉刷新
-        val needLogin: Boolean? = null
+        val needLogin: Boolean? = null,
+        val topArticleData: List<Article>? = null
     )
 
 }

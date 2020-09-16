@@ -12,4 +12,5 @@ data class ArticleList( val offset: Int,
                         val pageCount: Int,
                         val curPage: Int,
                         val over: Boolean,
-                        val datas: List<Article>): Serializable
+                        val datas: MutableList<Article>
+                        ): Serializable

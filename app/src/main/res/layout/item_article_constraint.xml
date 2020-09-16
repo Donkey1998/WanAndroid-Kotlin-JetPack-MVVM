@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <variable name="view" type="View"/>
         <variable
             name="article"
             type="com.wanandroid.model.resultbean.Article" />
@@ -18,13 +20,28 @@
         android:paddingRight="20dp"
         android:paddingTop="10dp">
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/isTop"
+            style="@style/Article_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:textSize="13sp"
+            android:textColor="	#DC143C"
+            android:text="@string/top"
+            android:textStyle="bold"
+            android:visibility="@{article.isTop ? view.VISIBLE: view.GONE}"
+            android:layout_marginStart="2dp"
+            android:layout_marginRight="5dp"
+            />
         <ImageView
             android:id="@+id/articleImg"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
             android:src="@drawable/home_hot"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toRightOf="@id/isTop"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/articleAuthor"
@@ -75,18 +92,6 @@
             app:layout_constraintTop_toTopOf="@id/articleAuthorImg"
             app:layout_constraintBottom_toBottomOf="@id/articleAuthorImg"/>
 
-        <ImageView
-            android:id="@+id/articleStar"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:clickable="true"
-            android:src="@drawable/timeline_like_normal"
-            android:layout_marginLeft="20dp"
-            app:layout_constraintLeft_toRightOf="@+id/articleTime"
-            app:layout_constraintTop_toTopOf="@id/articleTime"
-            app:layout_constraintBottom_toBottomOf="@id/articleTime"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,7 @@ import com.wanandroid.util.dp2px
 import com.wanandroid.view.CustomLoadMoreView
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.fragment_first.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -62,12 +63,14 @@ class FirstFragment() : BaseVMFragment<FragmentFirstBinding>(R.layout.fragment_f
         articleViewModel.getFirstArticleList(false)
     }
 
+    @ExperimentalCoroutinesApi
     private fun refresh() {
-        articleViewModel.getFirstArticleList(true)
+        articleViewModel.getFirstArticleList()
         articleViewModel.getBannerList()
     }
 
 
+    @ExperimentalCoroutinesApi
     override fun initData() {
         refresh()
     }
