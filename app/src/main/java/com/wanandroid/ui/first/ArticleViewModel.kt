@@ -45,8 +45,10 @@ class ArticleViewModel: BaseViewModel() {
     val mBanners: LiveData<List<Banner>>
         get() = _mBanners
 
+    @ExperimentalCoroutinesApi
     val refreshHome: ()-> Unit = {  //下拉刷新
         getBannerList()
+        getFirstArticleList()
     }
 
     val refreshLastedProject: ()-> Unit = {  //下拉刷新
