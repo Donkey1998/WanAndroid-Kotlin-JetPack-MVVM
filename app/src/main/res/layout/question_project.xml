@@ -10,55 +10,56 @@
             type="androidx.recyclerview.widget.RecyclerView.Adapter" />
 
     </data>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:paddingHorizontal="10dp"
-        android:gravity="center"
-        android:background="@color/colorPrimary"
-        >
-        <TextView
-            android:layout_marginLeft="28dp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:text="@string/question"
-            android:textColor="@color/white"
-            />
-        <ImageButton
-            android:id="@+id/search_btn"
-            android:background="@color/colorPrimary"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:src="@drawable/search"/>
-    </LinearLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/questionRefreshLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        binding:isRefresh="@{viewModel.uiState.showLoading}"
-        >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/questionRecycleView"
+        android:layout_height="720dp"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_marginTop="20dp"
-            itemBottomPadding="10dp"
-            adapter="@{adapter}">
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingHorizontal="10dp">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="28dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/question"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/search_btn"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/search" />
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/questionRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            binding:isRefresh="@{viewModel.uiState.showLoading}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/questionRecycleView"
+                adapter="@{adapter}"
+                itemBottomPadding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 </layout>
