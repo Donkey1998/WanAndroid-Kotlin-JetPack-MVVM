@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="RoundAngleImageView">
         <attr name="roundWidth" format="dimension" />
         <attr name="roundHeight" format="dimension" />
     </declare-styleable>
+
     <declare-styleable name="SearchTitleView">
         <attr name="hint" format="string" />
     </declare-styleable>
+
     <declare-styleable name = "ImgEditText">
         <attr name = "rightImg" format = "reference" />
+    </declare-styleable>
+
+    <declare-styleable name = "PasswordEditText">
+        <attr name = "rightImgOne" format = "reference" />
+        <attr name = "rightImgTwo" format = "reference" />
     </declare-styleable>
 </resources>
