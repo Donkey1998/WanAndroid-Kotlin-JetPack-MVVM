@@ -32,6 +32,7 @@
             android:src="@drawable/header"
             tools:ignore="ContentDescription" />
         <TextView
+            android:id="@+id/loginRegister"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
