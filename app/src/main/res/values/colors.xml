@@ -14,4 +14,7 @@
     <color name="black80">#CC000000</color>
     <color name="black60">#99000000</color>
     <color name="black5">#0D000000</color>
+    <!-- 图标颜色 -->
+    <color name="colorIcon">#7C7C7C</color>
+    <color name="ripple_dark">#11000000</color>
 </resources>

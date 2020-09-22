@@ -20,4 +20,12 @@
     <string name="clearAll">清除</string>
     <string name="nothing">什么都没有 w(ﾟДﾟ)w</string>
     <string name="top">置顶</string>
+    <string name="readHistory">阅读历史</string>
+    <string name="clearCache">清除缓存</string>
+    <string name="aboutAuthor">关于作者</string>
+    <string name="systemSetting">系统设置</string>
+    <string name="enterUserName">请输入用户名</string>
+    <string name="enterPassword">请输入密码</string>
+    <string name="login">登录</string>
+
 </resources>

@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="@string/me"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
+        android:textSize="18sp" />
+    <LinearLayout
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:padding="15dp"
+        android:background="@drawable/bg_press_color_surface"
+        tools:ignore="UselessParent">
+        <com.wanandroid.customui.RoundAngleImageView
+            android:id="@+id/header"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundHeight="25dp"
+            app:roundWidth="25dp"
+            android:src="@drawable/header"
+            tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/loginRegister"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="登录/注册"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrows_right"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.wanandroid.customui.SettingBar
+        android:id="@+id/readHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:bar_leftText="@string/readHistory"
+        app:bar_rightIcon="@drawable/ic_arrows_right"
+        app:bar_leftIcon="@drawable/ic_readhistory"
+        tools:ignore="MissingConstraints" />
+    <com.wanandroid.customui.SettingBar
+        android:id="@+id/clearCache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="@string/clearCache"
+        app:bar_rightIcon="@drawable/ic_arrows_right"
+        app:bar_leftIcon="@drawable/ic_clearcache"
+        tools:ignore="MissingConstraints" />
+    <com.wanandroid.customui.SettingBar
+        android:id="@+id/aboutAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="@string/aboutAuthor"
+        app:bar_rightIcon="@drawable/ic_arrows_right"
+        app:bar_leftIcon="@drawable/ic_about"
+        tools:ignore="MissingConstraints" />
+    <com.wanandroid.customui.SettingBar
+        android:id="@+id/systemSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="@string/systemSetting"
+        app:bar_rightIcon="@drawable/ic_arrows_right"
+        app:bar_leftIcon="@drawable/ic_setting"
+        tools:ignore="MissingConstraints" />
+
+
+</LinearLayout>

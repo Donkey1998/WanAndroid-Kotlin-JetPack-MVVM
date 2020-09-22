@@ -17,6 +17,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import com.wanandroid.R;
@@ -125,6 +126,12 @@ public class RoundAngleImageView extends ImageView {
                 90);
         path.close();
         canvas.drawPath(path, paint);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        getParent().requestDisallowInterceptTouchEvent(true);  //设置不拦截
+        return super.dispatchTouchEvent(event);
     }
 }
 

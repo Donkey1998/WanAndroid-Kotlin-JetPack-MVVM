@@ -2,6 +2,7 @@ package com.wanandroid
 import com.wanandroid.ui.blog.BlogViewModel
 import com.wanandroid.ui.first.ArticleViewModel
 import com.wanandroid.ui.guide.GuideViewModel
+import com.wanandroid.ui.login.RegisterLoginViewModel
 import com.wanandroid.ui.searchhistory.SearchHistoryViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -14,6 +15,7 @@ val viewModelModule = module {
     viewModel { GuideViewModel() }
     viewModel { BlogViewModel() }
     viewModel { SearchHistoryViewModel() }
+    viewModel { RegisterLoginViewModel() }
 }
 
 val repositoryModule = module {

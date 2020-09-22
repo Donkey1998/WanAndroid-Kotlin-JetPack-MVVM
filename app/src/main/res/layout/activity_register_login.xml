@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.wanandroid.ui.login.RegisterLoginViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:padding="15dp"
+        tools:context=".ui.login.RegisterLoginActivity">
+        <ImageView
+            android:id="@+id/goBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_go_back"
+            tools:ignore="MissingConstraints" />
+
+        <com.wanandroid.customui.RoundAngleImageView
+            android:id="@+id/header"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="120dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:roundHeight="50dp"
+            app:roundWidth="50dp"
+            android:src="@drawable/header"
+            tools:ignore="ContentDescription,MissingConstraints" />
+
+        <com.wanandroid.customui.imgedittext.ImgEditText
+            android:id="@+id/user_edt"
+            style="@style/EditTextStyle"
+            android:theme="@style/EditTextTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:hint="@string/enterUserName"
+            android:singleLine="true"
+            android:onTextChanged="@{viewModel::onNameChanged}"
+            tools:ignore="MissingConstraints"
+            app:rightImg="@drawable/ic_clear"/>
+        <com.wanandroid.customui.PasswordEditText
+            android:id="@+id/pwd_edt"
+            style="@style/EditTextStyle"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintTop_toBottomOf="@id/user_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="60dp"
+            android:hint="@string/enterPassword"
+            android:singleLine="true"
+            android:onTextChanged="@{viewModel::onPwdChanged}"
+            app:rightImgOne="@drawable/ic_password_off"
+            app:rightImgTwo="@drawable/ic_password_on"/>
+
+        <Button
+            android:id="@+id/login_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/pwd_edt"
+            android:background="@{(viewModel.userName.isEmpty()||viewModel.passWord.isEmpty()) ? @color/gray: @color/colorPrimary}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="50dp"
+            android:text="@string/login"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:enabled="@{(viewModel.userName.isEmpty()||viewModel.passWord.isEmpty()) ? false : true}"
+        />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
