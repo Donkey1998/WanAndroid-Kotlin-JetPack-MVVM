@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:text="登录/注册"
+            android:text=""
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="20sp"
