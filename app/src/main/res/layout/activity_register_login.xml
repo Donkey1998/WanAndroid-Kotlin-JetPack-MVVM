@@ -47,6 +47,7 @@
             android:layout_marginTop="10dp"
             android:hint="@string/enterUserName"
             android:singleLine="true"
+            android:text="@{viewModel.userName}"
             android:onTextChanged="@{viewModel::onNameChanged}"
             tools:ignore="MissingConstraints"
             app:rightImg="@drawable/ic_clear"/>
@@ -61,6 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="60dp"
             android:hint="@string/enterPassword"
+            android:text="@{viewModel.passWord}"
             android:singleLine="true"
             android:onTextChanged="@{viewModel::onPwdChanged}"
             app:rightImgOne="@drawable/ic_password_off"

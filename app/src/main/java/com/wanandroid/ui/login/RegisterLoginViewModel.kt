@@ -12,6 +12,7 @@ import com.wanandroid.model.resultbean.Article
 import com.wanandroid.model.resultbean.ArticleList
 import com.wanandroid.model.resultbean.User
 import com.wanandroid.ui.first.ArticleViewModel
+import com.wanandroid.util.SharedPreferencesData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,8 +23,8 @@ import kotlinx.coroutines.withContext
  */
 class RegisterLoginViewModel: BaseViewModel() {
     private val loginRepository = LoginRepository()
-    val userName = ObservableField<String>("Donkey")
-    val passWord = ObservableField<String>("SHIJIE520")
+    val userName = ObservableField<String>("")
+    val passWord = ObservableField<String>("")
     private var _uiState = MutableLiveData<LoginUiModel>()
     val uiState: LiveData<LoginUiModel>
         get() = _uiState
@@ -36,6 +37,13 @@ class RegisterLoginViewModel: BaseViewModel() {
         passWord.set(s.toString())
     }
 
+    fun initData() {
+        if(SharedPreferencesData.isLogin){
+            userName.set(SharedPreferencesData.name)
+            passWord.set(SharedPreferencesData.password)
+        }
+    }
+
     fun login(){
         viewModelScope.launch(Dispatchers.Main) {
             emitLoginModel(isLoading = true)
@@ -45,8 +53,12 @@ class RegisterLoginViewModel: BaseViewModel() {
             if (result is ResponseResult.Success){
                 Log.d("RegisterLoginViewModel1", result.data.toString())
                 val user = result.data
+                SharedPreferencesData.name = userName.get()?:user.username
+                SharedPreferencesData.password = passWord.get()?:user.password
+                SharedPreferencesData.isLogin = true;
                 emitLoginModel(isLoading = false ,successData= user,isLogin=true)
             }else if (result is ResponseResult.Error) {
+                SharedPreferencesData.isLogin = false
                 emitLoginModel(isLoading = false,showError=result.errorMsg,isLogin=true)
             }
         }

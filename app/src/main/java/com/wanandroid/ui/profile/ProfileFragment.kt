@@ -8,6 +8,7 @@ import com.wanandroid.App
 import com.wanandroid.R
 import com.wanandroid.base.BaseFragment
 import com.wanandroid.ui.login.RegisterLoginActivity
+import com.wanandroid.util.SharedPreferencesData
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -21,6 +22,12 @@ class ProfileFragment : BaseFragment() {
 
     override fun initView() {
         setOnClickListener()
+//        login.isEnabled = !SharedPreferencesData.isLogin
+        if(SharedPreferencesData.isLogin){
+            loginRegister.text = SharedPreferencesData.name
+        }else{
+            loginRegister.text = resources.getString(R.string.loginRegister)
+        }
     }
 
     override fun initData() {
@@ -54,9 +61,8 @@ class ProfileFragment : BaseFragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode === 2) {
             if (requestCode === 1) {
-                val userName = data?.getStringExtra("userName")
-                val userId = data?.getStringExtra("userId")
-                loginRegister.text = userName
+                loginRegister.text = SharedPreferencesData.name
+//                login.isEnabled = !SharedPreferencesData.isLogin
             }
         }
     }

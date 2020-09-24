@@ -27,5 +27,6 @@
     <string name="enterUserName">请输入用户名</string>
     <string name="enterPassword">请输入密码</string>
     <string name="login">登录</string>
+    <string name="loginRegister">登录</string>
 
 </resources>

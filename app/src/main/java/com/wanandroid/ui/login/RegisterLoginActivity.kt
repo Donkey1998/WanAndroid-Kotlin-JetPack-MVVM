@@ -24,6 +24,7 @@ class RegisterLoginActivity : BaseVMActivity() {
     }
 
     override fun initData() {
+        registerLoginViewModel.initData()
     }
 
     override fun startObserve() {
@@ -37,8 +38,6 @@ class RegisterLoginActivity : BaseVMActivity() {
             it.successData.let {it1 ->
                if(!it1?.username.isNullOrEmpty() && it1?.id.toString().isNotEmpty()){
                     val intent = Intent()
-                    intent.putExtra("userName",it1?.username)
-                    intent.putExtra("userId",it1?.id.toString())
                     setResult(2, intent);
                     finish()
                 }
