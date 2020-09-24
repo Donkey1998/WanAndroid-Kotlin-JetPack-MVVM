@@ -12,10 +12,12 @@ import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import com.wanandroid.base.BaseActivity
+import com.wanandroid.ui.readhistory.ReadHistoryViewModel
 import com.wanandroid.util.Share
 import kotlinx.android.synthetic.main.activity_browser.*
 import kotlinx.android.synthetic.main.dialog_share.*
 import kotlinx.android.synthetic.main.title_layout.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -23,7 +25,7 @@ import kotlinx.android.synthetic.main.title_layout.*
  * on 2018/3/25 21:47
  */
 class BrowserActivity : BaseActivity() {
-
+    private val readHistoryViewModel by viewModel<ReadHistoryViewModel>()
     companion object {
         const val URL = "url"
         const val TITLE = "title"
@@ -38,6 +40,7 @@ class BrowserActivity : BaseActivity() {
         setSupportActionBar(mToolbar);
         initWebView()
         initShareDialog()
+        readHistoryViewModel.addHistory(intent?.extras?.getString(URL).toString(), Html.fromHtml(intent?.extras?.getString(TITLE)).toString() )
     }
 
     private fun initShareDialog() {

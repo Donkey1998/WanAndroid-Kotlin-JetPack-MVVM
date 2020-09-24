@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+        <variable
+            name="viewModel"
+            type="com.wanandroid.ui.readhistory.ReadHistoryViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.readhistory.ReadHistoryActivity">
+    <LinearLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        binding:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorPrimary"
+        android:paddingTop="5dp"
+        android:paddingBottom="2dp"
+        android:gravity="center">
+        <ImageButton
+            android:id="@+id/back_bt"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_back0"
+            android:background="@color/colorPrimary"
+            android:layout_marginHorizontal="5dp"
+            />
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="@string/readHistory"
+            android:textColor="@color/white"
+            android:layout_marginRight="20dp"
+            />
+    </LinearLayout>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/readHistoryRefreshLayout"
+        binding:layout_constraintTop_toBottomOf="@+id/titleLayout"
+        binding:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        binding:isRefresh="@{viewModel.uiState.showLoading}"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/readHistoryRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            binding:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="20dp"
+            itemBottomPadding="10dp"
+            adapter="@{adapter}">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
