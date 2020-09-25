@@ -86,4 +86,8 @@ dependencies {
     kapt Deps.glide_compiler
     implementation Deps.customactivityoncrash
     implementation Deps.banner
+
+    implementation Deps.room
+    implementation Deps.room_ktx
+    kapt Deps.room_compiler
 }

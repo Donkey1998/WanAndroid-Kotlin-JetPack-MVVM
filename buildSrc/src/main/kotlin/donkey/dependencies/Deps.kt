@@ -45,6 +45,7 @@ object Versions {
     const val customactivityoncrash = "2.3.0"
 
     const val banner = "1.4.10"
+    const val roomVersion = "2.2.1"
 }
 
 object Deps {
@@ -94,4 +95,9 @@ object Deps {
     const val customactivityoncrash = "cat.ereza:customactivityoncrash:${Versions.customactivityoncrash}"
 
     const val banner = "com.youth.banner:banner:${Versions.banner}"
+
+    // Room components
+    const val room = "androidx.room:room-runtime:${Versions.roomVersion}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.roomVersion}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.roomVersion}"
 }
