@@ -38,7 +38,7 @@ class GuideAdapter (layoutResId: Int = R.layout.item_guide) : BaseQuickAdapter<G
             setOnTagClickListener { view, position, _ ->
                 val bundle = Bundle()
                 bundle.putString(BrowserActivity.URL,item.articles[position].link)
-                bundle.putString(BrowserActivity.TITLE,item.articles[position].link)
+                bundle.putString(BrowserActivity.TITLE,item.articles[position].title)
                 androidx.navigation.Navigation.findNavController(view)
                     .navigate(R.id.browserActivity, bundle)
                 true
