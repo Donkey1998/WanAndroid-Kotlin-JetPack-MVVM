@@ -10,6 +10,9 @@ import com.wanandroid.base.BaseViewModel
 import com.wanandroid.model.db.WanDatabase
 import com.wanandroid.model.db.dao.ReadHistoryModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
@@ -49,6 +52,16 @@ class ReadHistoryViewModel:BaseViewModel() {
             currentPage++
             emitArticleUiState(showLoading = false,successData=result, showEnd = (result.size<currentSize),isRefresh=isRefresh)
             Log.d("findAllHistory",result.size.toString())
+        }
+    }
+
+    fun clearAllHistory() {
+        viewModelScope.launch(Dispatchers.Main) {
+          val result= withContext(Dispatchers.IO){
+                WanDatabase.getInstance(App.getContext()).readHistoryDao().deleteAll()
+                WanDatabase.getInstance(App.getContext()).readHistoryDao().findAll(currentPage,currentSize)
+            }
+            emitArticleUiState(showLoading = false, successData = result,showEnd = true,isRefresh=true)
         }
     }
 

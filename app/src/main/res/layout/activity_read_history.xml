@@ -23,6 +23,7 @@
         android:background="@color/colorPrimary"
         android:paddingTop="5dp"
         android:paddingBottom="2dp"
+        android:paddingHorizontal="8dp"
         android:gravity="center">
         <ImageButton
             android:id="@+id/back_bt"
@@ -30,7 +31,7 @@
             android:layout_height="20dp"
             android:src="@drawable/ic_back0"
             android:background="@color/colorPrimary"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginEnd="45dp"
             />
         <TextView
             android:id="@+id/titleText"
@@ -41,8 +42,16 @@
             android:textSize="18sp"
             android:text="@string/readHistory"
             android:textColor="@color/white"
-            android:layout_marginRight="20dp"
             />
+
+        <TextView
+            android:id="@+id/clear_bt"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:gravity="center_vertical|right"
+            android:text="@string/clearAll"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </LinearLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/readHistoryRefreshLayout"

@@ -2,7 +2,9 @@ package com.wanandroid.ui.readhistory
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.wanandroid.App
 import com.wanandroid.BR
 import com.wanandroid.BrowserActivity
 import com.wanandroid.R
@@ -44,6 +46,9 @@ class ReadHistoryActivity : BaseVMActivity() {
         }
         back_bt.setOnClickListener {
             finish()
+        }
+        clear_bt.setOnClickListener {
+            readHistoryViewModel.clearAllHistory()
         }
     }
     private fun loadMore() {
