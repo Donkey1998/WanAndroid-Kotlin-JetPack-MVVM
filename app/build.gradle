@@ -90,4 +90,5 @@ dependencies {
     implementation Deps.room
     implementation Deps.room_ktx
     kapt Deps.room_compiler
+    implementation Deps.autoSize
 }

@@ -46,6 +46,7 @@ object Versions {
 
     const val banner = "1.4.10"
     const val roomVersion = "2.2.1"
+    const val autoSize = "1.2.1"
 }
 
 object Deps {
@@ -100,4 +101,6 @@ object Deps {
     const val room = "androidx.room:room-runtime:${Versions.roomVersion}"
     const val room_ktx = "androidx.room:room-ktx:${Versions.roomVersion}"
     const val room_compiler = "androidx.room:room-compiler:${Versions.roomVersion}"
+
+    const val autoSize = "me.jessyan:autosize:${Versions.autoSize}"
 }
