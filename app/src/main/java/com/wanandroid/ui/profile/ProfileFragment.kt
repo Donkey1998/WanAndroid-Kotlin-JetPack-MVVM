@@ -2,11 +2,11 @@ package com.wanandroid.ui.profile
 
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
-import androidx.navigation.fragment.NavHostFragment
 import com.wanandroid.App
 import com.wanandroid.R
 import com.wanandroid.base.BaseFragment
+import com.wanandroid.customui.commondialog.CommonDialog
+import com.wanandroid.customui.commondialog.CommonDialogListener
 import com.wanandroid.ui.login.RegisterLoginActivity
 import com.wanandroid.ui.readhistory.ReadHistoryActivity
 import com.wanandroid.util.SharedPreferencesData
@@ -50,6 +50,22 @@ class ProfileFragment : BaseFragment() {
         }
         clearCache.setOnClickListener {
             Log.d("ProfileFragment", "clearCache")
+            activity?.let {
+                val mDialog =
+                    CommonDialog(it)
+                mDialog.setViewText("标题","","取消","确定")
+                mDialog.setDialogOnClickListener(object :
+                    CommonDialogListener {
+                    override fun cancelOnClickListener() {
+                        mDialog.dismiss()
+                    }
+                    override fun confirmOnClickListener() {
+                    }
+
+                })
+                mDialog.show();
+            }
+
         }
         aboutAuthor.setOnClickListener {
             Log.d("ProfileFragment", "aboutAuthor")

@@ -17,4 +17,5 @@
     <!-- 图标颜色 -->
     <color name="colorIcon">#7C7C7C</color>
     <color name="ripple_dark">#11000000</color>
+    <color name="gray_line_color">#999999</color>
 </resources>
