@@ -5,6 +5,8 @@ import android.util.Log
 import com.wanandroid.App
 import com.wanandroid.R
 import com.wanandroid.base.BaseFragment
+import com.wanandroid.customui.builddialog.BuildDialog
+import com.wanandroid.customui.builddialog.BuildDialogListener
 import com.wanandroid.customui.commondialog.CommonDialog
 import com.wanandroid.customui.commondialog.CommonDialogListener
 import com.wanandroid.ui.login.RegisterLoginActivity
@@ -69,6 +71,27 @@ class ProfileFragment : BaseFragment() {
         }
         aboutAuthor.setOnClickListener {
             Log.d("ProfileFragment", "aboutAuthor")
+            var dialog :BuildDialog? = null
+            activity?.let {
+                dialog = BuildDialog.Builder(it)
+                    .setTitleText("标题")
+                    .setContentText("内容")
+                    .setCancelText("取消")
+                    .setConfirmText("确定")
+                    .setDialogOnClickListener(object : BuildDialogListener {
+                        override fun cancelOnClickListener() {
+                            dialog?.hide()
+                        }
+
+                        override fun confirmOnClickListener() {
+
+                        }
+
+                    })
+                    .create()
+
+                dialog?.show()
+            }
         }
         systemSetting.setOnClickListener {
             Log.d("ProfileFragment", "systemSetting")
